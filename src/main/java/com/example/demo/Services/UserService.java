@@ -35,6 +35,7 @@ public interface UserService {
     //LOGGEDIN USER
     boolean loginMatch(User user);
     User loggedIn(User user);
+    User addUser(User user);
 
     //CONFIRM
     boolean confirmKitchen(Kitchen kitchen);

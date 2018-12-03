@@ -233,9 +233,7 @@ public class UserRepoImpl implements UserRepo{
     @Override
     public User findLogin(String un, String pas) {
 
-        String sql = "SELECT iduser_role, user.username, user.password, role.idrole FROM user_role " +
-                "INNER JOIN user ON user_role.iduser = user.iduser " +
-                "INNER JOIN role ON user_role.idrole = role.idrole " +
+        String sql = "SELECT iduser, username, password, idrole FROM user " +
                 "WHERE username = ? AND password = ?";
 
         return this.jdbc.query(sql, new ResultSetExtractor<User>() {
@@ -246,7 +244,7 @@ public class UserRepoImpl implements UserRepo{
                 User user = new User();
 
                 while (rs.next()) {
-                    id = rs.getInt("iduser_role");
+                    id = rs.getInt("iduser");
                     userName = rs.getString("username");
                     pass = rs.getString("password");
                     role = rs.getInt("idrole");
@@ -259,6 +257,14 @@ public class UserRepoImpl implements UserRepo{
                 return user;
             }
         },un, pas);
+    }
+
+    public User addUser (User user){
+
+        String sql = "INSERT INTO user VALUES (default, ?, ?, 4)";
+        jdbc.update(sql, user.getUsername(), user.getPassword());
+
+        return user;
     }
 
 

@@ -34,6 +34,7 @@ public interface UserRepo {
 
     //LOGGEDIN USER
     User findLogin(String username, String password);
+    User addUser (User user);
 
     //CONFIRM
     boolean confirmKitchen(Kitchen kitchen);

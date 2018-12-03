@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<title>Login</title>
+<title>Sign Up</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -26,32 +26,30 @@
 
     <header th:include="header :: navbar"></header>
 
-    <h1>Login</h1>
+    <h1>Sign Up</h1>
 
     <div class="alert alert-danger alert-dismissible" th:classappend="${loginError} ? '' : 'd-none'">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Login Error!</strong> Wrong username or password!
     </div>
 
-    <form method="Post" th:action="@{/login}">
+    <form method="Post" th:action="@{/signup}">
 
         <label>Username:</label>
-        <input type="text" class="form-control mr-sm-2" th:name="username"/>
+        <input type="text" class="form-control mr-sm-2" th:field="${user.username}"/>
 
         <label>Password:</label>
-        <input type="password" class="form-control mr-sm-2" th:name="password"/>
+        <input type="password" class="form-control mr-sm-2" th:field="${user.password}"/>
 
         <br>
 
-        <input class="btn btn-light" type="reset" value="Reset">
+        <input type="submit" class="btn btn-success" value="Create">
 
-        <button class="btn btn-primary" type="submit">Login</button>
+
 
 
     </form>
     <br/>
-    <br>
-    <a th:href="@{/signup}" > <p> Sign up</p></a>
 
     <!--<a href="/createuser">
         <button class="btn btn-success"><span class="fas fa-plus"></span> Create new User</button>

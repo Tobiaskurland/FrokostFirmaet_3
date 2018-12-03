@@ -40,6 +40,7 @@ public class UserController {
     private final String JUDGE = "judge/judge";
     private final String JUDGE_FORM = "judge/judge_form";
     private final String KITCHEN_FORM = "kitchen/kitchen_form";
+    private final String SIGNUP = "signup";
 
     //ADMIN
     private final String INDEX_ADMIN = "admin/index_admin";
@@ -117,6 +118,23 @@ public class UserController {
             return REDIRECT + LOGIN;
         }
         return REDIRECT + LOGIN;
+    }
+
+    @GetMapping("/signup")
+    public String signup(Model model){
+
+        model.addAttribute("user", new User());
+
+        return SIGNUP;
+    }
+
+    @PostMapping("/signup")
+    public String signup (@ModelAttribute User user, Model model){
+
+        userService.addUser(user);
+
+
+        return REDIRECT;
     }
 //EVENT
     @GetMapping("/event")
